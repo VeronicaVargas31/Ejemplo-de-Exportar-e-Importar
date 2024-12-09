@@ -71,6 +71,7 @@ function ImportarDatos($archivoExcel, $conection)
             if ($stmt->execute()) {
                 return true;
             } else {
+                echo "Error al insertar usuario" . $stmt->error . "<br>";
                 return false;
             }
         } else {
