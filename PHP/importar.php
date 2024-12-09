@@ -45,16 +45,15 @@ function ImportarDatos($archivoExcel, $conection)
 
 
   if (empty($nombre_completo) || empty($flor_favorita)) {
-    echo "Fila $fila: nombre_completo o flor_favorita está vacío. Skipping.<br>";
     continue;
 }
 
 
 
  if (RegistroPersona($usuario_id, $nombre_completo, $flor_favorita, $conection)) {
-    echo "Fila $fila: Usuario registrado correctamente.<br>";
+    echo "Usuario registrado correctamente.<br>";
 } else {
-    echo "Fila $fila: Error al registrar usuario.<br>";
+    echo "Error al registrar usuario.<br>";
 }
 
 }
@@ -70,10 +69,8 @@ function ImportarDatos($archivoExcel, $conection)
         if ($stmt = mysqli_prepare($conection, $sql)) {
             $stmt->bind_param('iss', $usuario_id_, $nombre_completo_, $flor_favorita_);
             if ($stmt->execute()) {
-                echo "Usuario ID: $usuario_id_ insertado correctamente.<br>";
                 return true;
             } else {
-                echo "Error al insertar usuario ID: $usuario_id_. " . $stmt->error . "<br>";
                 return false;
             }
         } else {
